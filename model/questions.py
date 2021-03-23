@@ -51,7 +51,7 @@ def add_question(question_data):
     pass
 
 
-def edit_question(question_id, question_data)
+def edit_question(question_id, question_data):
     global questions
 
     # edit questions[id] ...
