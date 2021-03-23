@@ -1,7 +1,10 @@
-DATA_PATH = 'data/question.csv'
-DATA_HEADERS = ['id', 'submission_time', 'vote_number', 'question_id', 'message', 'image']
+
+import csv
 
 answers = {}
+DATA_PATH = 'data/answer.csv'
+DATA_HEADERS = ['id', 'submission_time', 'vote_number', 'question_id', 'message', 'image']
+
 '''
 
 {
@@ -18,7 +21,22 @@ answers = {}
 
 def load_answers():
     global answers
-    pass
+    global DATA_PATH
+    global DATA_HEADERS
+    with open(DATA_PATH) as answers_csv:
+        answer_lines = csv.reader(answers_csv, delimiter=',', quotechar='"')
+        isfirstline = True
+        for answer_line in answer_lines:
+            if isfirstline:
+                isfirstline = False
+                continue
+            answer_data = {}
+            for column_index in range(len(DATA_HEADERS)):
+                answer_data[DATA_HEADERS[column_index]] = answer_line[column_index]
+            answers[int(answer_line[0])] = answer_data
+
+    print(answers)
+    return answers
 
 
 def save_answers(question_data):
@@ -38,10 +56,7 @@ def get_question_answers(question_id):
 
 def get_answer(answer_id):
     global answers
-
-    # return answers[?]
-
-    pass
+    return answers[answer_id]
 
 
 def add_answer(question_id, answer_data):
@@ -79,3 +94,6 @@ def vote_answer(answer_id, vote):
     # load_answers()
 
     pass
+
+
+load_answers()
