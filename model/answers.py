@@ -16,7 +16,6 @@ answers = {}
 '''
 
 
-
 def load_answers():
     global answers
     pass

@@ -14,6 +14,7 @@ questions = {}
 
 '''
 
+
 def load_questions():
     global questions
     pass
@@ -31,7 +32,7 @@ def get_questions():
     return questions
 
 
-def get_questions(question_id):
+def get_question(question_id):
     global questions
 
     # return questions[id]
