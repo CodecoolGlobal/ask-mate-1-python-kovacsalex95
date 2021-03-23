@@ -9,8 +9,8 @@ app = Flask(__name__)
 @app.route("/")
 def main_page():
 
-    # questions.load_questions()
-    # answers.load_answers()
+    questions.load_questions()
+    answers.load_answers()
 
     return "Hello World!"
 
