@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, request
 import model.questions as questions
 import model.answers as answers
 
@@ -7,20 +7,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def main_page():
+    home_data = homepage_data()
 
-    questions.load_questions()
-    answers.load_answers()
+    return render_template("/main.html", data=home_data)
 
-    all_questions = questions.get_questions()
 
-    return render_template("/main.html", all_questions=all_questions)
+# QUESTIONS
 
 
 @app.route("/question/<question_id>")
 def view_question(question_id):
-
-    questions.load_questions()
-    answers.load_answers()
 
     question_data = questions.get_question(question_id)
     question_answers = answers.get_question_answers(question_id)
@@ -28,82 +24,138 @@ def view_question(question_id):
     return render_template("question.html", question=question_data, answers=question_answers)
 
 
-@app.route("/list")
-def question_list():
-    questions.load_questions()
-    answers.load_answers()
-    list_questions = questions.get_questions()
-    return render_template("question.html", questions=list_questions)
-# [GET] /vote ?question_id=[ID] &vote=1
-# [POST] /reply question_id=[ID] answer_data={}
-# ...
-
-
-@app.route("/add-question", methods="POST")
+@app.route("/add-question", methods=["POST"])
 def add_question():
-    add_question = {}
-    if request.methods == "POST":
+    if request.method == "POST":
+        new_question = {}
+
         title = request.values["question-title"]
         message = request.values["question-message"]
-        add_question["title"] = title
-        add_question["message"] = message
-        questions.add_question(add_question)
+        new_question["title"] = title
+        new_question["message"] = message
+        # todo: image
+
+        questions.add_question(new_question)
+
     return redirect("/")
 
 
-@app.route("/question/<question_id>/new-answer", methods="POST")
-def post_answer(question_id, answer_data):
-    questions.load_questions()
-    answers.load_answers()
-    if request.methods == "POST":
-        question_data = questions.get_question(question_id)
-        new_answer = answers.add_answer(question_id, answer_data)
-    return redirect("/question")
-
-
-@app.route("/question/<question_id>/delete")
-def delete_questions(question_id):
-    questions.load_questions()
-    questions.delete_question(question_id)
-    return redirect("/question")
-
-
-@app.route("/question/<question_id>/edit", methods="POST")
+@app.route("/question/<question_id>/edit", methods=["POST"])
 def edit_question(question_id):
-    question_data = {}
-
-    if request.methods=="POST":
+    if request.method == "POST":
+        question_data = {}
         title = request.values["question-title"]
         message = request.values["question-message"]
         question_data["title"] = title
         question_data["message"] = message
+
         questions.edit_question(question_id, question_data)
 
-    return redirect("/question")
+    return question_url(question_id)
+
+
+@app.route("/question/<question_id>/delete")
+def delete_question(question_id):
+    questions.delete_question(question_id)
+    answers.delete_question_answers(question_id)
+
+    return redirect("/")
+
+
+@app.route("/vote-question/<question_id>", methods=["GET"])
+def question_vote(question_id):
+    if request.method == "GET":
+        vote = request.args["vote"]
+        questions.vote_question(question_id, vote)
+
+    return question_url(question_id)
+
+
+# ANSWERS
+
+
+@app.route("/question/<question_id>/new-answer", methods=["POST"])
+def answer_question(question_id):
+    if request.method == "POST":
+        answer_data = {}
+
+        message = request.values["answer-message"]
+        answer_data['message'] = message
+        # todo: image
+
+        answers.add_answer(question_id, answer_data)
+
+    return question_url(question_id)
+
+
+@app.route('/answer/<answer_id>/edit-answer', methods=['POST'])
+def edit_answer(answer_id):
+    if request.method == 'POST':
+        answer_data = {}
+
+        message = request.values["answer-message"]
+        answer_data['message'] = message
+        # todo: image
+
+        answers.edit_answer(answer_id, answer_data)
+
+        answer_data = answers.get_answer(answer_id)
+        question_id = answer_data['question_id']
+
+        return question_url(question_id)
+
+    return redirect('/')
 
 
 @app.route("/answer/<answer_id>/delete")
 def delete_answer(answer_id):
-    answers.load_answer()
+    answer_data = answers.get_answer(answer_id)
+    question_id = answer_data['question_id']
+
     answers.delete_answer(answer_id)
-    return redirect("/answer")
+
+    return question_url(question_id)
 
 
-@app.route("/vote/<question_id>", methods=["GET"])
-def question_vote(question_id):
-    if request.method=="GET":
+@app.route("/vote-answer/<answer_id>", methods=["GET"])
+def answer_vote(answer_id):
+    if request.method == "GET":
+        answer_data = answers.get_answer(answer_id)
+        question_id = answer_data['question_id']
+
         vote = request.args["vote"]
-        questions.vote(question_id, vote)
-    return redirect("/question/"+str(question_id))
+        answers.vote_answer(answer_id, vote)
+
+        return question_url(question_id)
+
+    return redirect('/')
 
 
-@app.route("/vote/<answer_id>", methods=["GET"])
-def question_vote(answer_id):
-    if request.method=="GET":
-        vote = request.args["vote"]
-        questions.vote(answer_id, vote)
-    return redirect("/question/"+str(answer_id))
+# MISC
+
+def homepage_data():
+    print(answers.get_answers())
+
+    all_question = questions.get_questions()
+
+    results = {}
+
+    for question_id in all_question.keys():
+        question_data = all_question[int(question_id)].copy()
+        question_data['answers'] = answers.get_question_answers(int(question_id))
+        question_data['answers_class'] = 'hidden' if len(question_data['answers']) == 0 else ''
+
+        results[int(question_id)] = question_data
+
+    return results
+
+
+def question_url(question_id):
+    return redirect("/question/" + str(question_id))
 
 
 if __name__ == "__main__":
+    questions.load_questions()
+    answers.load_answers()
+
     app.run()
