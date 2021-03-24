@@ -40,18 +40,26 @@ def load_answers():
 
 
 def save_answers(question_data):
-    # save questions
-
-    # load_questions()
-    pass
+    global answers
+    global DATA_PATH
+    global DATA_HEADERS
+    with open(DATA_PATH, mode='w') as csv_answers:
+        writer = csv.DictWriter(csv_answers, fieldnames=DATA_HEADERS)
+        writer.writeheader(DATA_HEADERS)
+        for data in answers:
+            writer.writerow(data)
+    load_answers()
 
 
 def get_question_answers(question_id):
     global answers
+    question_answers = {}
 
-    # return answers[?]
+    for answer in range(len(answers)):
+        if answers[answer]['question_id'] == question_id:
+            question_answers[id] = answers[answer]
 
-    pass
+    return question_answers
 
 
 def get_answer(answer_id):
@@ -63,37 +71,36 @@ def add_answer(question_id, answer_data):
     global answers
 
     # add new answer
+    new_answer_id = get_id()
+    answers[new_answer_id] = answer_data
+    save_answers()
 
-    # save_answers(...)
-
-    # load_answers()
-
-    pass
+    return answers
 
 
 def edit_answer(answer_id, answer_data):
     global answers
 
     # edit answers[id] ...
+    answers[answer_id] = answer_data
 
-    # save_answers(...)
-
-    # load_answers()
-
-    pass
+    save_answers()
+    return answers
 
 
 def vote_answer(answer_id, vote):
     # vote can be +1/-1
     global answers
+    answers[answer_id]['vote_number'] += vote
+    save_answers()
 
-    # edit answers[id] ...
-
-    # save_answers(...)
-
-    # load_answers()
-
-    pass
+    return answers
 
 
-load_answers()
+def get_id():
+    global answers
+    id_list = answers.keys()
+
+    return int(max(id_list))+1
+
+
