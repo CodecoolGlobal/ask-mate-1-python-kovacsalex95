@@ -80,6 +80,15 @@ def edit_question(question_id, question_data):
     return questions
 
 
+def vote_answer(question_id, vote):
+    # vote can be +1/-1
+    global questions
+    questions[question_id]['vote_number'] += vote
+    save_questions()
+
+    return questions
+
+
 def get_id():
     global questions
     id_list = questions.keys()
