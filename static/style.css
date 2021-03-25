@@ -103,7 +103,7 @@ div#new-question {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: calc(var(--content-width) + 20px);
+    max-width: calc(var(--content-width) + 60px);
 }
 
 div#new-question > form {
@@ -263,6 +263,9 @@ div#new-question > form > button:hover {
 
 #question-list > .question > .answers {
     margin: 25px 10px 10px;
+}
+#question-list > .question > .answers:first-child {
+    margin-top: 0;
 }
 
 #question-list > .question > .answers > .answer {

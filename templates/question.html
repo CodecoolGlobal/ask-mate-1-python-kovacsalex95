@@ -5,6 +5,8 @@
     <div class="question">
         <label class="title" >{{ question.title }}</label>
         <div class="message">{{ question.message|safe }}</div>
+    </div>
+    <div class="question">
         <div class="answers {{ question.answers_class }}">
             {% for answer in answers %}
             <div class="answer">{{ answer.message|safe }}</div><br>
