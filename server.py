@@ -134,8 +134,6 @@ def answer_vote(answer_id):
 # MISC
 
 def homepage_data():
-    print(answers.get_answers())
-
     all_question = questions.get_questions()
 
     results = {}

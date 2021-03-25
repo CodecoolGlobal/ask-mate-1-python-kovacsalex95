@@ -13,14 +13,17 @@ def load_csv_data(path, headers):
                 isfirstline = False
                 continue
 
-            data = {}
-            for column_index in range(len(headers)):
-                value = data_line[column_index]
-                if value.isnumeric():
-                    value = int(value)
-                data[headers[column_index]] = value
+            try:
+                data = {}
+                for column_index in range(len(headers)):
+                    value = data_line[column_index]
+                    if value.isnumeric():
+                        value = int(value)
+                    data[headers[column_index]] = value
 
-            result[int(data_line[0])] = data
+                result[int(data_line[0])] = data
+            except IndexError:
+                continue
 
     return result.copy()
 
@@ -34,9 +37,6 @@ def write_csv_data(path, header, csv_data):
         data = []
 
         for column in header:
-            # print('\n\n', column, '\n', data_row, '\n\n')
-            # continue
-
             chunk = str(data_row[column])
 
             chunk = chunk.replace('\n', '<br>').replace('"', "'")

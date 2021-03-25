@@ -14,7 +14,7 @@
 
     --color-dark: #222;
     --color-dark2: #484545;
-    --color-border: #737373;/*#ccc;*/
+    --color-border: #444;/*#ccc;*/
     --color-bright: #eee;
     --color-middle: #dadada;
     --color-extrabright: #fff;
@@ -38,19 +38,23 @@
 body {
     background: var(--color-dark2);
     color: var(--color-bright);
-    background-image: url('/static/bg.jpg');
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 div#wrapper {
     padding-top: var(--header-height);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/bg_blur.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 div#header {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     height: var(--header-height);
@@ -67,10 +71,19 @@ div#header > * {
 }
 
 div#content {
+    position: absolute;
+    top: var(--header-height);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+}
+
+div#question-list {
+    padding: 40px 0px;
     width: 100%;
     max-width: var(--content-width);
     margin: 0 auto;
-    padding: 40px 0px;
 }
 
 div#new-question {
@@ -198,7 +211,7 @@ div#new-question > form > button:hover {
 }
 
 #question-list > .question {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     padding: 20px;
     background: var(--color-middle);
     color: var(--color-dark);
@@ -211,7 +224,7 @@ div#new-question > form > button:hover {
     background: -webkit-linear-gradient(-30deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
     background: linear-gradient(150deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#bf2b2b2b',GradientType=1 );
-    backdrop-filter: blur(5px);
+    /*backdrop-filter: blur(5px);*/
     font-family: 'Lexend', sans-serif;
 }
 
@@ -229,30 +242,18 @@ div#new-question > form > button:hover {
 
 #question-list > .question > .answers {
     margin-top: 15px;
-    border-top: 2px dashed var(--color-border);
+    border-top: 1px solid var(--color-dark-highlight);
 }
 
 #question-list > .question > .answers > .answer {
-    padding: 5px 0 5px 20px;
-    border-left: 2px solid var(--color-border);
-    position: relative;
-    font-size: 0.8em;
-    font-style: italic;
-}
-
-#question-list > .question > .answers > .answer:before {
-    content: ' ';
-    font-size: 0;
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: calc(1em + 10px);
-    transform: translateY(-50%);
-    background: var(--color-border);
-    width: 12px;
-    height: 2px;
-}
-
-#question-list > .question > .answers > .answer:first-child {
-    padding-top: 15px;
+    margin-top: 10px;
+    padding: 10px;
+    background: black;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 1px solid var(--color-dark-highlight);
 }
