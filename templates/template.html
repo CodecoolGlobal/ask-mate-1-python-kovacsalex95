@@ -10,13 +10,24 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <label class="site-name">NoHitSherlock</label>
+                <svg id="logo" viewBox="0 0 260 50">
+                    <symbol id="logo-text">
+                        <text text-anchor="middle" x="50%" y="80%">NoHitSherlock</text>
+                    </symbol>
+
+                    <g>
+                        <use xlink:href="#logo-text" class="text-copy"></use>
+                        <use xlink:href="#logo-text" class="text-copy"></use>
+                        <use xlink:href="#logo-text" class="text-copy"></use>
+                        <use xlink:href="#logo-text" class="text-copy"></use>
+                        <use xlink:href="#logo-text" class="text-copy"></use>
+                    </g>
+                </svg>
                 <div id="new-question">
                     <form action="/add-question" method="post">
-                        <input name="question-title" type="text" placeholder="Question title" autocomplete="off" required/>
-
+                        <input name="question-title" type="text" placeholder="Type your question here.." autocomplete="off" required/>
                         <div class="slider">
-                            <textarea name="question-message" placeholder="Question text" required></textarea>
+                            <textarea name="question-message" placeholder="Please provide additional info.." required></textarea>
                             <button type="submit">Submit</button>
                         </div>
                     </form>

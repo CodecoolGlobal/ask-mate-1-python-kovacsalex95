@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Titillium+Web:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300&family=Titillium+Web:wght@300&display=swap');
 
 :root {
     /* sizes */
@@ -21,13 +21,11 @@
     --color-dark-highlight: #36eac0;
 }
 
-* {
+*:not(svg) {
     padding: 0;
     margin: 0;
     border: 0;
     outline: 0;
-    font-size: 14px;
-    font-family: Roboto, sans-serif;
     box-sizing: border-box;
 }
 
@@ -36,6 +34,8 @@
 }
 
 body {
+    font-size: 14px;
+    font-family: Roboto, sans-serif;
     background: var(--color-dark2);
     color: var(--color-bright);
 }
@@ -65,7 +65,7 @@ div#header {
     z-index: 1000;
 }
 
-div#header > * {
+div#header > *:not(svg) {
     display: inline-block;
     line-height: var(--header-height);
     padding: 0 20px;
@@ -94,7 +94,7 @@ div#new-question {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: var(--content-width);
+    max-width: calc(var(--content-width) + 20px);
 }
 
 div#new-question > form {
@@ -268,4 +268,51 @@ div#new-question > form > button:hover {
     border-bottom-right-radius: 10px;
     border-left: 1px solid var(--color-dark-highlight);
     color: #ccc;
+    display: inline-block;
+}
+
+
+svg#logo {
+    display: inline-block;
+    font: 42px 'Bebas Neue';
+    width: 260px;
+    height: var(--header-height);
+}
+
+#logo .text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 1px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 11s infinite linear;
+}
+
+#logo .text-copy:nth-child(1){
+	stroke: #8de8d4;
+	animation-delay: -2s;
+}
+
+#logo .text-copy:nth-child(2){
+	stroke: #95de21;
+	animation-delay: -4s;
+}
+
+#logo .text-copy:nth-child(3){
+	stroke: #5428f1;
+	animation-delay: -6s;
+}
+
+#logo .text-copy:nth-child(4){
+	stroke: #debf21;
+	animation-delay: -8s;
+}
+
+#logo .text-copy:nth-child(5){
+	stroke: #d01a67;
+	animation-delay: -10s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
 }

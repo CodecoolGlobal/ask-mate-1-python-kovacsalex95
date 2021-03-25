@@ -8,7 +8,7 @@
         <div class="message">{{ data[question].message|safe }}</div>
         <div class="answers {{ data[question].answers_class }}">
             {% for answer in data[question].answers %}
-            <div class="answer">{{ answer.message|safe }}</div>
+            <div class="answer">{{ answer.message|safe }}</div><br>
             {% endfor %}
         </div>
     </div>
