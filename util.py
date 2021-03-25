@@ -1,4 +1,6 @@
 import csv
+import datetime
+import math
 
 
 def load_csv_data(path, headers):
@@ -54,3 +56,10 @@ def write_csv_data(path, header, csv_data):
         file_write.write(write_line + '\n')
 
     file_write.close()
+
+
+def date_time():
+    time = datetime.datetime.now().timestamp()
+    return math.floor(time)
+
+
