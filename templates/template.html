@@ -11,6 +11,16 @@
         <div id="wrapper">
             <div id="header">
                 <label class="site-name">NoHitSherlock</label>
+                <div id="new-question">
+                    <form action="/add-question" method="post">
+                        <input name="question-title" type="text" placeholder="Question title" autocomplete="off" required/>
+
+                        <div class="slider">
+                            <textarea name="question-message" placeholder="Question text" required></textarea>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
                 {% block menuitems %}{% endblock %}
             </div>
             <div id="content">

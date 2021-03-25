@@ -54,7 +54,7 @@ def add_question(question_data):
 
     new_question_data['id'] = new_question_id
     new_question_data['title'] = question_data['title']
-    new_question_data['message'] = question_data['message']
+    new_question_data['message'] = question_data['message'].replace('\n', '<br>')
     # todo: image
 
     questions[new_question_id] = new_question_data
@@ -68,7 +68,7 @@ def edit_question(question_id, question_data):
     new_question_data = get_question(question_id)
 
     new_question_data['title'] = question_data['title']
-    new_question_data['message'] = question_data['message']
+    new_question_data['message'] = question_data['message'].replace('\n', '<br>')
     # todo: image
 
     questions[question_id] = question_data

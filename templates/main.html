@@ -1,21 +1,14 @@
 {% extends "template.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div id="new-question">
-    <form action="/add-question" method="post">
-        <input name="question-title" type="text" placeholder="Question title" />
-        <textarea name="question-message" placeholder="Question text"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-</div>
 <div id="question-list">
     {% for question in data %}
     <div class="question">
         <label class="title">{{ data[question].title }}</label>
-        <div class="message">{{ data[question].message }}</div>
+        <div class="message">{{ data[question].message|safe }}</div>
         <div class="answers {{ data[question].answers_class }}">
             {% for answer in data[question].answers %}
-            <div class="answer">{{ answer.message }}</div>
+            <div class="answer">{{ answer.message|safe }}</div>
             {% endfor %}
         </div>
     </div>
