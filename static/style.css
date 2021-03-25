@@ -242,6 +242,7 @@ div#new-question > form > button:hover {
     background: linear-gradient(150deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
     /*backdrop-filter: blur(5px);*/
     font-family: 'Lexend', sans-serif;
+    position: relative;
 }
 
 #question-list > .question:last-child {
@@ -329,4 +330,44 @@ svg#logo {
 
 @keyframes stroke-offset{
 	100% {stroke-dashoffset: -35%;}
+}
+
+
+div.reply-form textarea {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    height: 100px;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+
+button {
+    margin: 0 auto;
+    display: block;
+    height: 40px;
+    width: 200px;
+    background: var(--color-dark-highlight);
+}
+
+
+label.vote-count {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 1.5em;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: bold;
+    background: var(--color-dark-highlight);
+    color: black;
+    line-height: 26px;
+    display: block;
+    text-align: center;
+}
+
+
+.vote-count a {
+    color: black;
 }

@@ -55,6 +55,7 @@ def add_question(question_data):
     new_question_data['id'] = new_question_id
     new_question_data['title'] = question_data['title']
     new_question_data['message'] = question_data['message'].replace('\n', '<br>')
+    new_question_data['submission_time'] = int(util.date_time())
     # todo: image
 
     questions[new_question_id] = new_question_data
@@ -86,7 +87,7 @@ def delete_question(question_id):
 def vote_question(question_id, vote):
     global questions
 
-    questions[question_id]['vote_number'] += int(vote)
+    questions[int(question_id)]['vote_number'] += int(vote)
     save_questions()
 
 

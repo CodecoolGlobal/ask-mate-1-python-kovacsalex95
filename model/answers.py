@@ -65,6 +65,7 @@ def add_answer(question_id, answer_data):
     new_answer_data['id'] = new_answer_id
     new_answer_data['question_id'] = question_id
     new_answer_data['message'] = answer_data['message'].replace('\n', '<br>')
+    new_answer_data['submission_time'] = int(util.date_time())
     # todo: image
 
     answers[new_answer_id] = new_answer_data
@@ -112,7 +113,7 @@ def delete_question_answers(question_id):
 def vote_answer(answer_id, vote):
     global answers
 
-    answers[answer_id]['vote_number'] += vote
+    answers[int(answer_id)]['vote_number'] += vote
     save_answers()
 
 
