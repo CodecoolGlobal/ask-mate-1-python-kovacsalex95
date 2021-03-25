@@ -5,14 +5,16 @@
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %} | NoHitSherlock</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
         {% endblock %}
     </head>
     <body>
         <div id="wrapper">
             <div id="header">
-                <svg id="logo" viewBox="0 0 260 50">
+                <svg id="logo" class="noselect" viewBox="0 0 260 50">
                     <symbol id="logo-text">
-                        <text text-anchor="middle" x="50%" y="80%">NoHitSherlock</text>
+                        <text text-anchor="left" x="0%" y="75%">NoHitSherlock</text>
                     </symbol>
 
                     <g>

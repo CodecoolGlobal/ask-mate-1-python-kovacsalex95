@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300&family=Titillium+Web:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Russo+One&family=Titillium+Web:wght@300&display=swap');
 
 :root {
     /* sizes */
@@ -19,6 +19,15 @@
     --color-middle: #dadada;
     --color-extrabright: #fff;
     --color-dark-highlight: #36eac0;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 *:not(svg) {
@@ -273,10 +282,12 @@ div#new-question > form > button:hover {
 
 
 svg#logo {
+    cursor: pointer;
     display: inline-block;
-    font: 42px 'Bebas Neue';
+    font: 32px 'Russo One';
     width: 260px;
     height: var(--header-height);
+    margin-left: 20px;
 }
 
 #logo .text-copy {
@@ -309,7 +320,7 @@ svg#logo {
 }
 
 #logo .text-copy:nth-child(5){
-	stroke: #d01a67;
+	stroke: #1a9cd0;
 	animation-delay: -10s;
 }
 

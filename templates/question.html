@@ -1,5 +1,15 @@
 {% extends "template.html" %}
-{% block title %}kérdés fasz{% endblock %}
+{% block title %}{{ question.title }}{% endblock %}
 {% block content %}
-coming soon...
+<div id="question-list">
+    <div class="question">
+        <label class="title" >{{ question.title }}</label>
+        <div class="message">{{ question.message|safe }}</div>
+        <div class="answers {{ question.answers_class }}">
+            {% for answer in answers %}
+            <div class="answer">{{ answer.message|safe }}</div><br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

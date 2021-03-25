@@ -42,7 +42,7 @@ def get_questions():
 
 def get_question(question_id):
     global questions
-    return questions[question_id]
+    return questions[int(question_id)]
 
 
 def add_question(question_data):
