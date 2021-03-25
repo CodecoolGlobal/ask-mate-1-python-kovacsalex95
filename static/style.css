@@ -47,8 +47,8 @@ div#wrapper {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/static/bg_blur.jpg');
-    background-position: center center;
+    background-image: url('/static/bg5.jpg');
+    background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -58,7 +58,9 @@ div#header {
     top: 0;
     width: 100%;
     height: var(--header-height);
-    background: var(--color-dark);
+    background: -moz-linear-gradient(-30deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 49%, rgba(43,43,43,0.4) 100%);
+    background: -webkit-linear-gradient(-30deg, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 49%,rgba(43,43,43,0.4) 100%);
+    background: linear-gradient(150deg, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 49%,rgba(43,43,43,0.4) 100%);
     color: var(--color-bright);
     z-index: 1000;
 }
@@ -104,7 +106,6 @@ div#new-question > form > input[name="question-title"] {
     padding: 0px 10px;
     font-size: 1.3em;
     height: calc(var(--header-height) - 20px);
-    outline: 10px solid var(--color-dark);
     position: relative;
     z-index: 10000;
     -webkit-border-radius: 12px;
@@ -130,7 +131,9 @@ div#new-question > form > .slider {
     transition: all ease-in 0.2s;
     width: 100%;
     padding: 0 10px 10px;
-    background: var(--color-dark);
+    background: -moz-linear-gradient(-30deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.78) 49%, rgba(43,43,43,0.75) 100%);
+    background: -webkit-linear-gradient(-30deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
+    background: linear-gradient(150deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
     -webkit-box-shadow: 0px 10px 23px 0px rgba(0, 0, 0, 0);
     -moz-box-shadow: 0px 10px 23px 0px rgba(0,0,0,0);
     box-shadow: 0px 10px 23px 0px rgba(0, 0, 0, 0);
@@ -174,7 +177,7 @@ div#new-question > form > .slider > textarea {
 }
 
 div#new-question > form > .slider > button {
-    padding: 10px 0;
+    padding: 10px 20px;
     margin-top: 10px;
     background: var(--color-dark-highlight);
     color: var(--color-dark);
@@ -187,11 +190,16 @@ div#new-question > form > .slider > button {
     -moz-border-radius-bottomleft: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
+    transition-delay: 0s;
+    transition-duration: 0.3s;
 }
 
 div#new-question > form > .slider > button:hover {
-    background: var(--color-dark);
-    color: var(--color-dark-highlight);
+    /*background: var(--color-dark);
+    color: var(--color-dark-highlight);*/
+    padding-left: 30px;
+    padding-right: 10px;
+    opacity: 0.7;
 }
 
 div#new-question > form > button {
@@ -223,7 +231,6 @@ div#new-question > form > button:hover {
     background: -moz-linear-gradient(-30deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.78) 49%, rgba(43,43,43,0.75) 100%);
     background: -webkit-linear-gradient(-30deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
     background: linear-gradient(150deg, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.78) 49%,rgba(43,43,43,0.75) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#bf2b2b2b',GradientType=1 );
     /*backdrop-filter: blur(5px);*/
     font-family: 'Lexend', sans-serif;
 }
@@ -240,13 +247,17 @@ div#new-question > form > button:hover {
     color: #8de8d4;
 }
 
+#question-list > .question > .message {
+    font-size: 1.1em;
+    display: block;
+}
+
 #question-list > .question > .answers {
-    margin-top: 15px;
-    border-top: 1px solid var(--color-dark-highlight);
+    margin: 25px 10px 10px;
 }
 
 #question-list > .question > .answers > .answer {
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 10px;
     background: black;
     -webkit-border-top-right-radius: 10px;
@@ -256,4 +267,5 @@ div#new-question > form > button:hover {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: 1px solid var(--color-dark-highlight);
+    color: #ccc;
 }
