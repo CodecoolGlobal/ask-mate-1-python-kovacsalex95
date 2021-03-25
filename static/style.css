@@ -255,6 +255,11 @@ div#new-question > form > button:hover {
     margin-bottom: 10px;
     display: block;
     color: #8de8d4;
+    max-width: 70%;
+}
+
+#question-list > .question > a.title {
+    text-decoration: none;
 }
 
 #question-list > .question > .message {
@@ -282,8 +287,12 @@ div#new-question > form > button:hover {
     border-left: 1px solid var(--color-dark-highlight);
     color: #ccc;
     display: inline-block;
+    position: relative;
 }
 
+#question-list > .question.replies > .answers > .answer {
+    padding-left: 32px;
+}
 
 svg#logo {
     cursor: pointer;
@@ -332,6 +341,21 @@ svg#logo {
 	100% {stroke-dashoffset: -35%;}
 }
 
+#question-list > .question.replies > .answers {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+#question-list > .question.replies > .answers > .answer:first-child {
+    margin-top: 0;
+}
+
+#question-list > .question > .answers > .answer > small {
+    display: block;
+    font-size: 0.7em;
+    margin-bottom: 3px;
+    color: gray;
+}
 
 div.reply-form textarea {
     display: block;
@@ -343,17 +367,23 @@ div.reply-form textarea {
     border-radius: 10px;
 }
 
-
-button {
+div.reply-form button {
     margin: 0 auto;
     display: block;
     height: 40px;
     width: 200px;
     background: var(--color-dark-highlight);
+    border-radius: 10px;
+    transition: all ease-in 0.1s;
+    cursor: pointer;
 }
 
+div.reply-form button:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+}
 
-label.vote-count {
+.question > label.vote-count {
     position: absolute;
     right: 20px;
     top: 20px;
@@ -365,9 +395,41 @@ label.vote-count {
     line-height: 26px;
     display: block;
     text-align: center;
+    padding: 5px;
+    border-radius: 5px;
 }
 
-
-.vote-count a {
+.question > .vote-count a {
     color: black;
+}
+.question > .vote-count a i.fa{
+    transition: all ease-in 0.1s;
+}
+.question > .vote-count a.vote-up:hover i.fa {
+    transform: translateY(-5px);
+}
+.question > .vote-count a.vote-down:hover i.fa {
+    transform: translateY(5px);
+}
+
+.question .title small {
+    font-size: 0.69em;
+    margin-left: 15px;
+    color: grey;
+}
+
+#question-list > .question > .answers > .answer > .vote-count {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    text-align: center;
+}
+
+#question-list > .question > .answers > .answer > .vote-count > * {
+    display: block;
+}
+
+#question-list > .question > .answers > .answer > .vote-count > a {
+    color: var(--color-dark-highlight);
 }

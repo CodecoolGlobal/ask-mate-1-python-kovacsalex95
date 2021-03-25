@@ -1,5 +1,6 @@
 import csv
 import datetime
+from datetime import datetime
 import math
 
 
@@ -59,7 +60,8 @@ def write_csv_data(path, header, csv_data):
 
 
 def date_time():
-    time = datetime.datetime.now().timestamp()
-    return math.floor(time)
+    return math.floor(datetime.now().timestamp())
 
 
+def time_kekw(timestamp):
+    return datetime.fromtimestamp(timestamp)

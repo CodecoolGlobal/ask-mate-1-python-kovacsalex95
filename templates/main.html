@@ -4,11 +4,11 @@
 <div id="question-list">
     {% for question in data %}
     <div class="question">
-        <a class="title" href="/question/{{ data[question].id }}">{{ data[question].title }}</a>
+        <a class="title" href="/question/{{ data[question].id }}">{{ data[question].title }}<small>{{ data[question].submission_datetime }}</small></a>
         <div class="message">{{ data[question].message|safe }}</div>
         <div class="answers {{ data[question].answers_class }}">
             {% for answer in data[question].answers %}
-            <div class="answer">{{ answer.message|safe }}</div><br>
+            <div class="answer"><small>{{ answer.submission_datetime }}</small>{{ answer.message|safe }}</div><br>
             {% endfor %}
         </div>
     </div>

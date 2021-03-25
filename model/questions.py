@@ -24,6 +24,10 @@ def load_questions():
 
     questions = util.load_csv_data(DATA_PATH, DATA_HEADERS)
 
+    for question_id in questions.keys():
+        question_timestamp = questions[question_id]['submission_time']
+        questions[question_id]['submission_datetime'] = util.time_kekw(question_timestamp)
+
 
 def save_questions():
     global questions

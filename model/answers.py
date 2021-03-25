@@ -23,6 +23,10 @@ def load_answers():
 
     answers = util.load_csv_data(DATA_PATH, DATA_HEADERS)
 
+    for answer_id in answers.keys():
+        answer_timestamp = answers[answer_id]['submission_time']
+        answers[answer_id]['submission_datetime'] = util.time_kekw(answer_timestamp)
+
 
 def get_answers():
     global answers
@@ -52,7 +56,7 @@ def get_question_answers(question_id):
 
 def get_answer(answer_id):
     global answers
-    return answers[answer_id]
+    return answers[int(answer_id)]
 
 
 def add_answer(question_id, answer_data):
@@ -113,7 +117,12 @@ def delete_question_answers(question_id):
 def vote_answer(answer_id, vote):
     global answers
 
-    answers[int(answer_id)]['vote_number'] += vote
+    try:
+        answers[int(answer_id)]['vote_number'] += int(vote)
+    except TypeError:
+        # szopd le magad
+        pass
+
     save_answers()
 
 
