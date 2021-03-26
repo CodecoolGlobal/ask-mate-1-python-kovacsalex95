@@ -60,7 +60,7 @@ def add_question(question_data):
     new_question_data['title'] = question_data['title']
     new_question_data['message'] = question_data['message'].replace('\n', '<br>')
     new_question_data['submission_time'] = int(util.date_time())
-    # todo: image
+    new_question_data['image'] = question_data['image']
 
     questions[new_question_id] = new_question_data
 

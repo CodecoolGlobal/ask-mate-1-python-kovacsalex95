@@ -470,3 +470,40 @@ div.reply-form button:hover {
 #question-list > .question > .answers > .answer > .answer-buttons > a {
     color: var(--color-dark-highlight);
 }
+
+#new-question #question-image {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+}
+
+#question-list > .question > .image-container {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 50%;
+    position: relative;
+    margin: 20px 0;
+}
+
+#question-list > .question > .image-container > div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+#question-list > .question > .image-container > div > img {
+    display: block;
+    max-width: calc(100% - 20px);
+    max-height: calc(100% - 20px);
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

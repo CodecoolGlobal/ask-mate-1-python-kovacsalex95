@@ -2,6 +2,10 @@ import csv
 import datetime
 from datetime import datetime
 import math
+import model.questions as questions
+import model.answers as answers
+from flask import redirect, url_for
+import os
 
 
 def load_csv_data(path, headers):
@@ -68,3 +72,28 @@ def date_time():
 
 def time_kekw(timestamp):
     return datetime.fromtimestamp(timestamp)
+
+
+def homepage_data():
+    all_question = questions.get_questions()
+
+    results = {}
+
+    for question_id in all_question.keys():
+        question_data = all_question[int(question_id)].copy()
+        question_data['answers'] = answers.get_question_answers(int(question_id))
+        question_data['answers_class'] = 'hidden' if len(question_data['answers']) == 0 else ''
+        question_data['image_class'] = 'hidden' if question_data['image'] == '' else ''
+
+        results[int(question_id)] = question_data
+
+    return results
+
+
+def question_url(question_id):
+    return redirect("/question/" + str(question_id))
+
+
+def allowed_file(filename, allowed_extensions):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in allowed_extensions

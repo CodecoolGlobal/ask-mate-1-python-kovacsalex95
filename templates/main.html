@@ -8,6 +8,11 @@
             <label>{{ data[question].vote_number }}</label>
         </label>
         <a class="title" href="/question/{{ data[question].id }}">{{ data[question].title }}<small>{{ data[question].submission_datetime }}</small></a>
+        <div class="image-container {{ data[question].image_class }}" style="background-image:url('/{{ data[question].image }}')">
+            <div>
+                <img src="/{{ data[question].image }}"/>
+            </div>
+        </div>
         <div class="message">{{ data[question].message|safe }}</div>
         <div class="answers {{ data[question].answers_class }}">
             {% for answer in data[question].answers %}

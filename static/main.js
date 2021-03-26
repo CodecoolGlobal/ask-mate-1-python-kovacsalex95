@@ -69,6 +69,9 @@ function editQuestion()
     setObjectClass('#new-question','edit', true);
 
     setObjectClass('#cancel-edit','hidden', false);
+
+    $('#question-image').val('');
+    setObjectClass('#question-image', 'hidden', true);
 }
 
 function cancelEdit()
@@ -100,6 +103,8 @@ function cancelEdit()
 
     setObjectClass('#new-question','add', true);
     setObjectClass('#new-question','edit', false);
+    $('#question-image').val('');
+    setObjectClass('#question-image', 'hidden', false);
 
     setObjectClass('#cancel-edit','hidden', true);
 }

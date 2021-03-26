@@ -27,12 +27,13 @@
                     </g>
                 </svg>
                 <div id="new-question" class="add">
-                    <form action="/add-question" method="post">
+                    <form action="/add-question" method="post" enctype="multipart/form-data">
                         <input type="hidden" id="form-type" name="form-type" value="add">
                         <input type="hidden" id="edit-id" name="edit-id" value="-1">
                         <input id="question-title" name="question-title" type="text" placeholder="Type your question here.." autocomplete="off" required/>
                         <div class="slider">
                             <textarea id="question-message" name="question-message" placeholder="Please provide additional info.." required></textarea>
+                            <input type="file" id="question-image" name="question-image">
                             <button type="submit">Submit</button>
                             <button type="button" id="cancel-edit" onclick="cancelEdit();" class="hidden">Cancel</button>
                         </div>
