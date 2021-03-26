@@ -4,6 +4,9 @@
 <div id="question-list">
     {% for question in data %}
     <div class="question">
+        <label class="vote-count noselect">
+            <label>{{ data[question].vote_number }}</label>
+        </label>
         <a class="title" href="/question/{{ data[question].id }}">{{ data[question].title }}<small>{{ data[question].submission_datetime }}</small></a>
         <div class="message">{{ data[question].message|safe }}</div>
         <div class="answers {{ data[question].answers_class }}">

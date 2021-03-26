@@ -39,7 +39,10 @@
                 <input type="hidden" name="form-type" id="answer-form-type" value="add">
                 <input type="hidden" name="edit-id" id="answer-edit-id" value="-1">
                 <textarea name="answer-message" id="answer-message" required placeholder="Type your answer here.."></textarea>
-                <button type="submit">Submit</button>
+                <div class="buttons">
+                    <button type="submit">Submit</button>
+                    <button type="button" id="cancel-answer-edit" onclick="cancelAnswerEdit();" class="hidden">Cancel</button>
+                </div>
             </form>
 
 

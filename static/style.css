@@ -193,14 +193,14 @@ div#new-question > form > .slider > button {
     font-weight: bold;
     font-size: 1.1em;
     cursor: pointer;
-    -webkit-border-bottom-right-radius: 12px;
-    -webkit-border-bottom-left-radius: 12px;
-    -moz-border-radius-bottomright: 12px;
-    -moz-border-radius-bottomleft: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
     transition-delay: 0s;
     transition-duration: 0.3s;
+}
+
+div#new-question.edit > form > .slider > button:not(#cancel-edit) {
+    border-radius: 0;
 }
 
 div#new-question > form > .slider > button:hover {
@@ -368,9 +368,11 @@ div.reply-form textarea {
     border-radius: 10px;
 }
 
+div.reply-form .buttons {
+    text-align: center;
+}
 div.reply-form button {
-    margin: 0 auto;
-    display: block;
+    margin: 0 5px;
     height: 40px;
     width: 200px;
     background: var(--color-dark-highlight);
