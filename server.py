@@ -27,6 +27,11 @@ def view_question(question_id):
 @app.route("/add-question", methods=["POST"])
 def add_question():
     if request.method == "POST":
+
+        # edit mode
+        if request.values['form-type'] == 'edit' and request.values['edit-id'].isnumeric() and int(request.values['edit-id']) >= 0:
+            return edit_question(int(request.values['edit-id']), request.values)
+
         new_question = {}
 
         title = request.values["question-title"]
@@ -40,16 +45,16 @@ def add_question():
     return redirect("/")
 
 
-@app.route("/question/<question_id>/edit", methods=["POST"])
-def edit_question(question_id):
-    if request.method == "POST":
-        question_data = {}
-        title = request.values["question-title"]
-        message = request.values["question-message"]
-        question_data["title"] = title
-        question_data["message"] = message
+# kommenteltem mivel ez a hozzáadó formból fog működni kekw
+# @app.route("/question/<question_id>/edit", methods=["POST"])
+def edit_question(question_id, request_values):
+    question_data = {}
+    title = request_values["question-title"]
+    message = request_values["question-message"]
+    question_data["title"] = title
+    question_data["message"] = message
 
-        questions.edit_question(question_id, question_data)
+    questions.edit_question(question_id, question_data)
 
     return question_url(question_id)
 

@@ -40,6 +40,9 @@ def write_csv_data(path, header, csv_data):
         data = []
 
         for column in header:
+            if column not in data_row:
+                continue
+
             chunk = str(data_row[column])
 
             chunk = chunk.replace('\n', '<br>').replace('"', "'")

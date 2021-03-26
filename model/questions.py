@@ -70,13 +70,13 @@ def add_question(question_data):
 def edit_question(question_id, question_data):
     global questions
 
-    new_question_data = get_question(question_id)
+    new_question_data = questions[int(question_id)].copy()
 
     new_question_data['title'] = question_data['title']
     new_question_data['message'] = question_data['message'].replace('\n', '<br>')
     # todo: image
 
-    questions[question_id] = question_data
+    questions[int(question_id)] = new_question_data
 
     save_questions()
 
@@ -84,7 +84,7 @@ def edit_question(question_id, question_data):
 def delete_question(question_id):
     global questions
 
-    questions.pop(question_id)
+    questions.pop(int(question_id))
     save_questions()
 
 
