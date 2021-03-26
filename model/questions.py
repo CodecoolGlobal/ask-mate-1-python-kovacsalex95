@@ -91,7 +91,8 @@ def delete_question(question_id):
 def vote_question(question_id, vote):
     global questions
 
-    questions[int(question_id)]['vote_number'] += int(vote)
+    old = questions[int(question_id)]['vote_number']
+    questions[int(question_id)]['vote_number'] = old + int(vote)
     save_questions()
 
 

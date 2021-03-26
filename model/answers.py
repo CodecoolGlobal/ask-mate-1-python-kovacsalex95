@@ -117,11 +117,8 @@ def delete_question_answers(question_id):
 def vote_answer(answer_id, vote):
     global answers
 
-    try:
-        answers[int(answer_id)]['vote_number'] += int(vote)
-    except TypeError:
-        # szopd le magad
-        pass
+    old = int(answers[int(answer_id)]['vote_number'])
+    answers[int(answer_id)]['vote_number'] = old + int(vote)
 
     save_answers()
 
