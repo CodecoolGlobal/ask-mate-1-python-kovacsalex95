@@ -27,6 +27,7 @@ def load_questions():
     for question_id in questions.keys():
         question_timestamp = questions[question_id]['submission_time']
         questions[question_id]['submission_datetime'] = util.time_kekw(question_timestamp)
+        questions[question_id]['image_class'] = 'hidden' if questions[question_id]['image'] == '' else ''
 
 
 def save_questions():

@@ -83,7 +83,6 @@ def homepage_data():
         question_data = all_question[int(question_id)].copy()
         question_data['answers'] = answers.get_question_answers(int(question_id))
         question_data['answers_class'] = 'hidden' if len(question_data['answers']) == 0 else ''
-        question_data['image_class'] = 'hidden' if question_data['image'] == '' else ''
 
         results[int(question_id)] = question_data
 
