@@ -27,7 +27,6 @@ def view_question(question_id):
 @app.route("/add-question", methods=["POST"])
 def add_question():
     if request.method == "POST":
-
         # edit mode
         if request.values['form-type'] == 'edit' and request.values['edit-id'].isnumeric() and int(request.values['edit-id']) >= 0:
             return edit_question(int(request.values['edit-id']), request.values)
@@ -82,6 +81,10 @@ def question_vote(question_id):
 @app.route("/question/<question_id>/new-answer", methods=["POST"])
 def answer_question(question_id):
     if request.method == "POST":
+        # edit mode
+        if request.values['form-type'] == 'edit' and request.values['edit-id'].isnumeric() and int(request.values['edit-id']) >= 0:
+            return edit_answer(int(request.values['edit-id']), request.values)
+
         answer_data = {}
 
         message = request.values["answer-message"]
@@ -93,23 +96,21 @@ def answer_question(question_id):
     return question_url(question_id)
 
 
-@app.route('/answer/<answer_id>/edit-answer', methods=['POST'])
-def edit_answer(answer_id):
-    if request.method == 'POST':
-        answer_data = {}
+#kommenteltem mivel ez a hozzáadó formból fog működni kekw
+# @app.route('/answer/<answer_id>/edit-answer', methods=['POST'])
+def edit_answer(answer_id, request_values):
+    answer_data = {}
 
-        message = request.values["answer-message"]
-        answer_data['message'] = message
-        # todo: image
+    message = request_values["answer-message"]
+    answer_data['message'] = message
+    # todo: image
 
-        answers.edit_answer(answer_id, answer_data)
+    answers.edit_answer(answer_id, answer_data)
 
-        answer_data = answers.get_answer(answer_id)
-        question_id = answer_data['question_id']
+    answer_data = answers.get_answer(answer_id)
+    question_id = answer_data['question_id']
 
-        return question_url(question_id)
-
-    return redirect('/')
+    return question_url(question_id)
 
 
 @app.route("/answer/<answer_id>/delete")

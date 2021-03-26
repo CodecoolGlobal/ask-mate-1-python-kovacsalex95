@@ -80,7 +80,7 @@ def add_answer(question_id, answer_data):
 def edit_answer(answer_id, answer_data):
     global answers
 
-    new_answer_data = get_answer(answer_id)
+    new_answer_data = get_answer(int(answer_id)).copy()
 
     new_answer_data['message'] = answer_data['message'].replace('\n', '<br>')
     # todo: image
@@ -93,7 +93,7 @@ def edit_answer(answer_id, answer_data):
 def delete_answer(answer_id):
     global answers
 
-    answers.pop(answer_id)
+    answers.pop(int(answer_id))
 
     save_answers()
 
